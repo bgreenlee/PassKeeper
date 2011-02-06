@@ -1,0 +1,23 @@
+; Definition file for Crypt DLL
+
+LIBRARY		CRYPTNT
+DESCRIPTION	'Encryption DLL'
+CODE		PRELOAD MOVEABLE DISCARDABLE
+DATA		PRELOAD MOVEABLE SINGLE
+HEAPSIZE	8192
+EXPORTS		initLibrary
+			endLibrary
+			queryModeAvailability
+			queryAlgoAvailability
+			queryAlgoModeInformation
+			queryContextInformation
+			initCryptContext
+			initCryptContextEx
+			destroyCryptContext
+			loadCryptContext
+			loadIV
+			retrieveIV
+			encryptBuffer
+			decryptBuffer
+
+IMPORTS

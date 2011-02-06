@@ -1,0 +1,30 @@
+/****************************************************************************
+
+
+pass.rh
+
+produced by Borland Resource Workshop
+
+
+*****************************************************************************/
+
+#define MENU_MAIN	MENU_MAIN
+#define CM_FILEEXIT	901
+#define CM_HELPABOUT	24346
+#define IDE_USERNAME	202
+#define IDE_PASSWORD	203
+#define IDE_NOTES	204
+#define IDE_ACCOUNT	201
+#define DIALOG_MAIN	DIALOG_MAIN
+#define IDB_REMOVE	102
+#define IDB_QUIT	104
+#define IDC_LISTBOX	111
+#define IDC_CONFIRM	105
+#define IDC_AUTOSAVE	106
+#define IDB_EDIT	103
+#define IDB_ADD	101
+#define IDC_EDIT1 301
+#define IDC_EDIT2 302
+#define IDC_EDIT3 303
+#define IDE_ENTER_PASSWORD 304
+

@@ -1,0 +1,74 @@
+#include <owl/owlpch.h>
+#include <owl/applicat.h>
+#include <owl/framewin.h>
+#include <string.h>
+#include <io.h>
+#include "pass.rh"
+#include "pass.hpp"
+#include "main.hpp"
+#include "passdlg.hpp"
+
+	 TMainWindow *mainWindow;
+
+class TMyApp : public TApplication {
+	public:
+	 bool CheckPassword();
+	 void InitMainWindow();
+
+	private:
+  	char password[MAX_ENTRY_SIZE];
+};
+
+bool
+TMyApp::CheckPassword()
+{
+	ifstream datafile;
+	datafile.open("pass.dat",ios::nocreate);
+ 	datafile.close();
+	if (datafile.fail()) {
+		TWelcomeDialog *dialog = new TWelcomeDialog(0,"DIALOG_WELCOME");
+		if (dialog->Execute() == IDOK) {
+		  strcpy(password,dialog->Password());
+		}
+		else {
+			return false;
+		}
+		delete dialog;
+	}
+	else {
+		TEnterPasswordDialog *dialog = new TEnterPasswordDialog(0,"DIALOG_ENTER_PASSWORD");
+		if (dialog->Execute() == IDOK) {
+		  strcpy(password,dialog->Password());
+		}
+		else {
+			return false;
+		}
+    delete dialog;
+	}
+
+	return true;
+}
+											
+void
+TMyApp::InitMainWindow()
+{
+	EnableCtl3d(true);
+
+	if (!CheckPassword()) exit(0);
+
+	mainWindow = new TMainWindow;
+	mainWindow->SetMainPassword(password);
+
+	SetMainWindow(new TFrameWindow(0,"PassKeeper",mainWindow, true));
+	GetMainWindow()->AssignMenu("MENU_MAIN");
+	GetMainWindow()->SetIcon(this,"ICON");
+	GetMainWindow()->Attr.Style &= (WS_CAPTION | WS_CLIPCHILDREN
+	| WS_SYSMENU | WS_MINIMIZEBOX | WS_VISIBLE);
+	GetMainWindow()->Attr.Style &= ~(WS_MAXIMIZEBOX);
+}
+
+int
+OwlMain(int /*argc*/, char* /*argv*/ [])
+{
+	return TMyApp().Run();
+}

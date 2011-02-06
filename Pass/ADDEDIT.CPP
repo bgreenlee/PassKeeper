@@ -1,0 +1,93 @@
+#include <owl/owlpch.h>
+#include <owl/applicat.h>
+#include <owl/framewin.h>
+
+#include "pass.rh"
+#include "pass.hpp"
+#include "main.hpp"
+#include "addedit.hpp"
+
+TAddEditDialog::TAddEditDialog(TMainWindow *m,TWindow *parent,TResId resId,UINT t):TDialog(parent, resId)
+{
+  myParent = m;
+	type = t;
+	accountEdit = new TEdit(this,IDE_ACCOUNT,MAX_ENTRY_SIZE);
+	usernameEdit = new TEdit(this,IDE_USERNAME,MAX_ENTRY_SIZE);
+	passwordEdit = new TEdit(this,IDE_PASSWORD,MAX_ENTRY_SIZE);
+	notesEdit = new TEdit(this,IDE_NOTES,0);
+}
+
+TAddEditDialog::TAddEditDialog(TMainWindow *m,TWindow *parent,TResId resId,UINT t,TEntry *entry):TDialog(parent, resId)
+{
+	myParent = m;
+	type = t;
+	strcpy(account,entry->account);
+	strcpy(username,entry->username);
+	strcpy(password,entry->password);
+	strcpy(notes,entry->notes);
+
+	accountEdit = new TEdit(this,IDE_ACCOUNT,MAX_ENTRY_SIZE);
+	usernameEdit = new TEdit(this,IDE_USERNAME,MAX_ENTRY_SIZE);
+	passwordEdit = new TEdit(this,IDE_PASSWORD,MAX_ENTRY_SIZE);
+	notesEdit = new TEdit(this,IDE_NOTES,MAX_NOTES_SIZE);
+}
+
+TAddEditDialog::~TAddEditDialog()
+{
+	delete accountEdit;
+	delete usernameEdit;
+	delete passwordEdit;
+	delete notesEdit;
+}
+
+void
+TAddEditDialog::SetupWindow()
+{
+	TDialog::SetupWindow();
+
+	if (type == EDIT)
+	{
+		accountEdit->SetText(account);
+		usernameEdit->SetText(username);
+		passwordEdit->SetText(password);
+		notesEdit->SetText(notes);
+
+		this->SetCaption("Edit");
+	}
+	else
+		this->SetCaption("Add");
+}
+
+bool
+TAddEditDialog::CanClose()
+{
+	if (!accountEdit->GetTextLen())
+	{
+		MessageBox("Account name must be entered.");
+		return false;
+	}
+
+	char temp[MAX_ENTRY_SIZE];
+
+	accountEdit->GetText(temp,MAX_ENTRY_SIZE);
+	for (int i=0;i<strlen(temp);i++) {
+		if (!(temp[i] >= 'A' && temp[i] <= 'Z') &&
+				!(temp[i] >= 'a' && temp[i] <= 'z') &&
+				!(temp[i] >= '0' && temp[i] <= '9')) {
+			MessageBox("Your account name may contain only alphanumeric\ncharacters (A-Z, a-z, or 0-9).");
+			return false;
+		}
+	}
+
+	if (myParent->Duplicate(temp) && !(type == EDIT && (strcmp(temp,account)==0))) {
+		MessageBox("You already have an account with that name.\nPlease enter a unique account name.");
+		return false;
+	}
+
+	strcpy(account,temp);
+	usernameEdit->GetText(username,MAX_ENTRY_SIZE);
+	passwordEdit->GetText(password,MAX_ENTRY_SIZE);
+	notesEdit->GetText(notes,MAX_NOTES_SIZE);
+
+	return TRUE;
+}

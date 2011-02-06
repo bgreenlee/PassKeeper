@@ -1,0 +1,123 @@
+/****************************************************************************
+
+
+PASS.RC
+
+produced by Borland Resource Workshop
+
+
+*****************************************************************************/
+
+#include </bc45/include/owl/window.rh>
+#include "pass.rh"
+
+DIALOG_MAIN DIALOG 145, 92, 207, 111
+STYLE 0x4L | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+{
+ PUSHBUTTON "Add", IDB_ADD, 146, 11, 50, 14
+ PUSHBUTTON "Remove", IDB_REMOVE, 146, 32, 50, 14
+ PUSHBUTTON "Edit", IDB_EDIT, 146, 53, 50, 14
+ PUSHBUTTON "Quit", IDB_QUIT, 146, 85, 50, 14
+ LISTBOX IDC_LISTBOX, 10, 11, 127, 89, LBS_STANDARD | WS_TABSTOP
+}
+DIALOG_ADDEDIT DIALOG 59, 55, 176, 144
+STYLE DS_MODALFRAME | 0x4L | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDE_ACCOUNT, 46, 9, 115, 12, WS_BORDER | WS_TABSTOP
+ EDITTEXT IDE_USERNAME, 46, 25, 115, 12, WS_BORDER | WS_TABSTOP
+ EDITTEXT IDE_PASSWORD, 46, 41, 115, 12, WS_BORDER | WS_TABSTOP
+ EDITTEXT IDE_NOTES, 46, 57, 115, 55, ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_BORDER | WS_TABSTOP
+ DEFPUSHBUTTON "OK", IDOK, 29, 122, 50, 14
+ PUSHBUTTON "Cancel", IDCANCEL, 96, 122, 50, 14
+ LTEXT "Account", -1, 9, 11, 30, 8
+ LTEXT "Username", -1, 9, 27, 33, 9
+ LTEXT "Password", -1, 9, 43, 32, 8
+ LTEXT "Notes", -1, 9, 57, 32, 8
+}
+MENU_MAIN MENU 
+{
+ POPUP "&File"
+ {
+  MENUITEM "E&xit", CM_FILEEXIT
+ }
+
+ POPUP "&Options"
+ {
+	MENUITEM "&Confirm Remove", CM_OPTIONSCONFIRM, CHECKED
+	MENUITEM "&Auto-Save on Quit", CM_OPTIONSAUTOSAVE, CHECKED
+  MENUITEM SEPARATOR
+  MENUITEM "Change &Password...", CM_OPTIONSPASSWORD
+ }
+
+ POPUP "&Help", HELP
+ {
+  MENUITEM "&About...", CM_HELPABOUT
+ }
+
+}
+MENU_MAIN ACCELERATORS 
+{
+ "^C", CM_EDITCOPY, ASCII
+ "^V", CM_EDITPASTE, ASCII
+ VK_DELETE, CM_EDITDELETE, VIRTKEY
+}
+DIALOG_ABOUT DIALOG 103, 77, 150, 147
+STYLE DS_MODALFRAME | 0x4L | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About PassKeeper"
+FONT 8, "MS Sans Serif"
+{
+ DEFPUSHBUTTON "OK", IDOK, 50, 127, 50, 14
+ ICON "ICON", -1, 7, 9, 18, 20
+ LTEXT "PassKeeper 1.21, 32-bit", -1, 34, 8, 107, 8
+ LTEXT "by Brad Greenlee", -1, 34, 22, 110, 9
+ LTEXT "brad@isys.hu", -1, 34, 48, 60, 8
+ LTEXT "Copyright 1996 Brad Greenlee", -1, 34, 35, 111, 9
+ LTEXT "DES Implementation", -1, 34, 81, 66, 8
+ LTEXT "Copyright 1995 Eric Young", -1, 34, 91, 89, 8
+ LTEXT "(eay@mincom.oz.au)", -1, 34, 101, 69, 8
+ LTEXT "All Rights Reserved", -1, 34, 111, 66, 8
+ LTEXT "http://www.isys.hu/staff/brad/", -1, 34, 58, 99, 8
+}
+
+ICON ICON "pass.ico"
+DIALOG_CHANGE_PASSWORD DIALOG 70, 104, 189, 71
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU  | 0x04
+CAPTION "Change Password"
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDE_CHANGE_NEW1, 76, 4, 108, 12, ES_PASSWORD | WS_BORDER | WS_TABSTOP
+ EDITTEXT IDE_CHANGE_NEW2, 76, 20, 108, 12, ES_PASSWORD | WS_BORDER | WS_TABSTOP
+ DEFPUSHBUTTON "OK", IDOK, 34, 49, 50, 14
+ PUSHBUTTON "Cancel", IDCANCEL, 104, 49, 50, 14
+ LTEXT "New Password", -1, 4, 6, 60, 8
+ LTEXT "New Password Again", -1, 4, 22, 70, 9
+ LTEXT "(for confirmation)", -1, 4, 30, 60, 8
+}
+DIALOG_ENTER_PASSWORD DIALOG 168, 140, 167, 59
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 0x04
+CAPTION "PassKeeper - Enter Password"
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDE_ENTER_PASSWORD, 45, 11, 114, 14, ES_PASSWORD | WS_BORDER | WS_TABSTOP
+ DEFPUSHBUTTON "OK", IDOK, 28, 37, 50, 14
+ PUSHBUTTON "Cancel", IDCANCEL, 89, 37, 50, 14
+ LTEXT "Password", -1, 6, 14, 34, 8
+}
+DIALOG_WELCOME DIALOG 133, 97, 242, 167
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU  | 0x04
+CAPTION "Welcome to PassKeeper"
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDE_NEWPASS1, 8, 105, 110, 13, ES_PASSWORD | WS_BORDER | WS_TABSTOP
+ EDITTEXT IDE_NEWPASS2, 122, 105, 110, 13, ES_PASSWORD | WS_BORDER | WS_TABSTOP
+ DEFPUSHBUTTON "OK", IDOK, 50, 146, 50, 14
+ PUSHBUTTON "Cancel", IDCANCEL, 142, 146, 50, 14
+ LTEXT "Welcome to PassKeeper!", -1, 3, 5, 86, 11
+ LTEXT "Before you can start using PassKeeper, you need to create a master password. This password not only allows you to access the PassKeeper program, but is the key to unlocking your encrypted PassKeeper data.", -1, 3, 18, 236, 24
+ LTEXT "DO NOT FORGET THIS PASSWORD! If you do, your PassKeeper data will be undecipherable.", -1, 3, 50, 232, 18
+ LTEXT "In the boxes below, please enter your password. As a security precaution, you will see asterisks (*) instead of the characters you type. You need to enter it twice to make sure you don't mistype it.", -1, 3, 72, 231, 28
+ LTEXT "Thank you for using PassKeeper!", -1, 3, 127, 113, 11
+}
+
