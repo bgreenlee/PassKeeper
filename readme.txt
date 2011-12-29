@@ -2,7 +2,7 @@ PassKeeper 1.2, 32-bit
 by Brad Greenlee
 Copyright 1996 Brad Greenlee
 All Rights Reserved
-http://www.isys.hu/staff/brad/passkeeper.html
+http://passkeeper.com
 
 Introduction
 ------------
@@ -21,10 +21,10 @@ users are asked to pay $10 per copy. I also ask that this file remains with
 any redistribution of PassKeeper. 
 
 If you find any bugs or have any suggestions on improving PassKeeper, feel 
-free to email me at brad@isys.hu
+free to email me at brad@passkeeper.com
 
 The most up-to-date version of PassKeeper can always be found at
-http://www.isys.hu/staff/brad/passkeeper.html
+http://passkeeper.com
 
 I assume no liability for lost data or any other damages caused directly or
 indirectly by this program. If you forget your password or you stumble across 
@@ -171,8 +171,7 @@ That's it. Thanks for using PassKeeper!
 
 
 Brad Greenlee
-brad@isys.hu
-http://www.isys.hu/staff/brad/
+brad@passkeeper.com
 
 Budapest
 24 April 1996
@@ -180,7 +179,7 @@ Budapest
 
 PassKeeper Copyright Info
 ------------------
-Copyright (C) 1996 Brad Greenlee (brad@isys.hu)
+Copyright (C) 1996 Brad Greenlee (brad@passkeeper.com)
 All rights reserved.
 
 This program is free for commercial and non-commercial use as long as
